@@ -1,0 +1,56 @@
+# EcoSort AI — Intelligent Waste Sorting Agent
+
+GitHub Pages-ready educational project. It demonstrates an agent that observes a waste item, classifies it, decides a category, recommends a disposal method and records user confirmation/feedback.
+
+## Features
+- Responsive dashboard and activity log.
+- Six supported classes: plastic, paper, glass, organic, metal and e-waste.
+- Simulation mode for a dependable classroom demo.
+- Real image classification using a user-trained Google Teachable Machine image model.
+- Confidence score, explanation and disposal guidance.
+- GitHub Pages deployment; no backend or API key.
+
+## Simulation vs real recognition
+**Simulation:** the six sample buttons return predefined classes. If you upload a file in simulation mode, the fallback checks the filename for a category keyword. It does NOT inspect the image pixels. Do not describe this fallback as computer vision.
+
+**Real image model:** loads a trained Teachable Machine TensorFlow.js image model and predicts from the uploaded image in the browser. You must train and publish your own model first.
+
+## Set up real image recognition
+1. Visit https://teachablemachine.withgoogle.com/ and choose Get Started → Image Project → Standard image model.
+2. Create classes named with these keywords: `plastic`, `paper`, `glass`, `organic`, `metal`, `ewaste`.
+3. Add many varied images per class (different backgrounds, angles and lighting), then train.
+4. Choose Export Model → TensorFlow.js → Upload my model.
+5. Copy the model URL, like `https://teachablemachine.withgoogle.com/models/XXXXXXXXX/`.
+6. In EcoSort AI, paste the URL into Model Settings and click Load image model.
+7. Choose Real image model, upload an image and click Analyse waste.
+
+The app reads the model's highest-probability class. Class names should include one of the keywords above; unknown labels map to General waste. A Teachable Machine image model provides `model.json` and `metadata.json`.
+
+## Run locally
+Open `index.html` in a browser, or use VS Code and the Live Server extension.
+
+## Publish on GitHub Pages
+1. Sign in to GitHub and create a new **Public** repository named `Intelligent-Waste-Sorting-Agent`.
+2. Upload `index.html`, `style.css`, `app.js`, and `README.md` to the repository root.
+3. Open repository **Settings → Pages**.
+4. Under Build and deployment, choose **Deploy from a branch**.
+5. Choose branch `main` and folder `/(root)`, then click Save.
+6. Wait for deployment. GitHub displays your website URL in Settings → Pages:
+   `https://YOUR-USERNAME.github.io/Intelligent-Waste-Sorting-Agent/`
+
+## Classroom demo
+1. Start in Simulation mode. Select Plastic, then Analyse waste.
+2. Explain the result, confidence score, recommended bin and activity log.
+3. Load your Teachable Machine model, switch to Real image model, upload a real item photo and analyse it.
+4. Confirm the decision and explain the workflow: Observe → Classify → Decide → Recommend → Adapt.
+
+## Limitations and responsible use
+- Educational prototype, not a certified municipal sorting system.
+- Local recycling rules differ; check your municipality's instructions.
+- Model accuracy depends on training data and image quality.
+- Feedback is stored only in the current session; it does not retrain the model.
+- Real model loading requires internet access.
+- Do not use this tool to make decisions about hazardous, medical or unknown chemical waste.
+
+## Technologies
+HTML · CSS · JavaScript · TensorFlow.js · Google Teachable Machine · GitHub Pages
